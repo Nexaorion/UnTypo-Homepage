@@ -1,13 +1,65 @@
 import { Reveal } from './Reveal'
 
-const APPS_ROW_A = [
-  '微信', '钉钉', '飞书', '企业微信', 'QQ', 'Telegram', 'Slack', 'Outlook', 'Foxmail',
+interface AppItem {
+  name: string
+  icon?: string
+  glyph?: string
+  generic?: boolean
+}
+
+const APPS_ROW_A: AppItem[] = [
+  { name: '微信', icon: '/app-icons/wechat.png' },
+  { name: '钉钉', icon: '/app-icons/dingtalk.png' },
+  { name: '飞书', icon: '/app-icons/feishu.png' },
+  { name: '企业微信', icon: '/app-icons/wecom.png' },
+  { name: 'QQ', icon: '/app-icons/qq.png' },
+  { name: 'Telegram', icon: '/app-icons/telegram.png' },
+  { name: 'Slack', icon: '/app-icons/slack.png' },
+  { name: 'Outlook', icon: '/app-icons/outlook.png' },
+  { name: 'Foxmail', icon: '/app-icons/foxmail.png' },
 ]
-const APPS_ROW_B = [
-  'Word', 'WPS', 'Notion', 'Obsidian', 'VS Code', 'Cursor', '浏览器表单', '记事本', '任意输入框',
+const APPS_ROW_B: AppItem[] = [
+  { name: 'Word', glyph: 'W' },
+  { name: 'WPS', icon: '/app-icons/wps.png' },
+  { name: 'Notion', icon: '/app-icons/notion.png' },
+  { name: 'Obsidian', icon: '/app-icons/obsidian.png' },
+  { name: 'VS Code', icon: '/app-icons/vscode.png' },
+  { name: 'Cursor', icon: '/app-icons/cursor.png' },
+  { name: '浏览器表单', generic: true },
+  { name: '记事本', generic: true },
+  { name: '任意输入框', generic: true },
 ]
 
-function ChipRow({ items, reverse = false, duration }: { items: string[]; reverse?: boolean; duration: string }) {
+function AppIcon({ app }: { app: AppItem }) {
+  if (app.icon) {
+    return (
+      <img
+        src={app.icon}
+        alt=""
+        width={20}
+        height={20}
+        className="h-5 w-5 rounded-[5px]"
+        loading="lazy"
+      />
+    )
+  }
+  if (app.glyph) {
+    return (
+      <span className="grid h-5 w-5 place-items-center rounded-[5px] bg-[#2b579a] font-display text-[11px] font-extrabold text-white">
+        {app.glyph}
+      </span>
+    )
+  }
+  return (
+    <span className="grid h-5 w-5 place-items-center rounded-[5px] border-[1.5px] border-dashed border-ink/40 text-ink-faint">
+      <svg viewBox="0 0 12 12" className="h-2.5 w-2.5" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
+        <path d="M2 4.5h8M2 4.5V10h8V4.5M4.5 4.5V3a1.5 1.5 0 0 1 3 0v1.5" strokeLinecap="round" />
+      </svg>
+    </span>
+  )
+}
+
+function ChipRow({ items, reverse = false, duration }: { items: AppItem[]; reverse?: boolean; duration: string }) {
   const doubled = [...items, ...items]
   return (
     <div className="marquee overflow-hidden" aria-hidden={reverse ? true : undefined}>
@@ -17,11 +69,11 @@ function ChipRow({ items, reverse = false, duration }: { items: string[]; revers
       >
         {doubled.map((app, i) => (
           <span
-            key={`${app}-${i}`}
-            className="inline-flex items-center gap-2 rounded-lg border-[1.5px] border-ink/70 bg-paper-card px-4 py-2 font-mono text-sm font-semibold whitespace-nowrap text-ink shadow-key"
+            key={`${app.name}-${i}`}
+            className="inline-flex items-center gap-2.5 rounded-lg border-[1.5px] border-ink/70 bg-paper-card px-4 py-2 font-mono text-sm font-semibold whitespace-nowrap text-ink shadow-key"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-vermilion" />
-            {app}
+            <AppIcon app={app} />
+            {app.name}
           </span>
         ))}
       </div>
@@ -39,9 +91,6 @@ export function WorksEverywhere() {
             <br className="sm:hidden" />
             它就在哪儿工作
           </h2>
-          <p className="max-w-sm text-sm leading-relaxed text-ink-soft">
-            UnTypo 把结果直接输入到当前光标位置——聊天、写作、填表、写代码，不挑应用，不挑输入框。
-          </p>
         </Reveal>
       </div>
       <div className="space-y-3">

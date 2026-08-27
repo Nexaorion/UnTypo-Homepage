@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 
 interface Scenario {
   mode: string
-  modeColor: string
   utterance: string
   result: string
 }
@@ -10,21 +9,18 @@ interface Scenario {
 const SCENARIOS: Scenario[] = [
   {
     mode: '转写',
-    modeColor: '#3e6b4f',
     utterance: '帮我写封邮件 跟客户确认周四下午两点的评审会 顺便把议程发过去',
     result: '您好，想与您确认本周四 14:00 的评审会议，届时将同步项目进展并讨论下一阶段计划，议程详见附件。期待您的回复。',
   },
   {
     mode: '翻译',
-    modeColor: '#c98a1b',
     utterance: '翻译成英文 这个功能下个版本再上 这周先修稳定性问题',
     result: "This feature will ship in the next release. This week we're focusing on stability fixes first.",
   },
   {
     mode: '指令',
-    modeColor: '#d9481f',
     utterance: '把这段需求改写成三条验收标准 要可以测试',
-    result: '1. 用户按住热键时立即开始录音，松开后 2 秒内完成转写；\n2. 转写结果准确插入原光标位置，不覆盖已选文本；\n3. 断网时给出明确错误提示，不丢失本地历史。',
+    result: '1. 用户短按热键立即开始录音，再按一次结束，2 秒内完成转写；\n2. 转写结果准确插入原光标位置，不覆盖已选文本；\n3. 断网时给出明确错误提示，不丢失本地历史。',
   },
 ]
 
@@ -57,9 +53,9 @@ export function DictationDemo() {
     // speak the utterance char by char
     const chars = [...scenario.utterance]
     chars.forEach((_, i) => {
-      later(() => setUttered(scenario.utterance.slice(0, i + 1)), 500 + i * 62)
+      later(() => setUttered(scenario.utterance.slice(0, i + 1)), 700 + i * 62)
     })
-    const speakDone = 500 + chars.length * 62
+    const speakDone = 700 + chars.length * 62
 
     later(() => setPhase('thinking'), speakDone + 350)
 
@@ -87,13 +83,6 @@ export function DictationDemo() {
         <span className="h-3 w-3 rounded-full bg-vermilion/80" />
         <span className="h-3 w-3 rounded-full bg-amberish/70" />
         <span className="h-3 w-3 rounded-full bg-moss/70" />
-        <span className="ml-3 font-mono text-xs text-ink-faint">untitled — 你正在写的任何地方</span>
-        <span
-          className="ml-auto rounded-full px-2.5 py-0.5 font-mono text-[11px] font-semibold text-paper"
-          style={{ backgroundColor: scenario.modeColor }}
-        >
-          {scenario.mode}模式
-        </span>
       </div>
 
       <div className="px-5 py-5 sm:px-6">
@@ -151,19 +140,18 @@ export function DictationDemo() {
               {phase === 'typing' ? <span className="caret" aria-hidden /> : null}
             </>
           ) : (
-            <span className="text-ink-faint">松开按键后，文字会出现在这里。</span>
+            <span className="text-ink-faint">结束录音后，文字会出现在这里。</span>
           )}
         </div>
       </div>
 
-      {/* hold-to-talk bar */}
       <div className="flex items-center justify-center gap-3 border-t-[1.5px] border-ink/15 px-4 py-3.5">
         <kbd className={`keycap ${recording ? 'pressed keycap--vermilion' : ''}`}>Ctrl</kbd>
         <span className="text-xs text-ink-faint">+</span>
         <kbd className={`keycap ${recording ? 'pressed keycap--vermilion' : ''}`}>Alt</kbd>
         <span className="text-xs text-ink-faint">+</span>
         <kbd className={`keycap min-w-[7.5em] ${recording ? 'pressed keycap--vermilion' : ''}`}>
-          {recording ? '松开即输入' : '长按说话'}
+          {recording ? '再按一次结束' : '短按开始说话'}
         </kbd>
       </div>
     </div>

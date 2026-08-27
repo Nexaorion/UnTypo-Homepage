@@ -2,10 +2,9 @@ import { Reveal } from './Reveal'
 import { SectionHeading } from './SectionHeading'
 
 const LOCAL_ITEMS = [
-  { label: '配置与词典', detail: '保存在当前电脑' },
-  { label: '历史记录', detail: '本地 SQLite 数据库' },
-  { label: 'API Key 与个人资料', detail: '系统级加密后存储' },
-  { label: '账号 / 同步 / 中转服务器', detail: '没有，一个都没有' },
+  { label: '配置与词典', detail: 'local' },
+  { label: '历史记录', detail: 'local database' },
+  { label: 'API Key 与个人资料', detail: 'local secret database' }
 ]
 
 export function Privacy() {
@@ -50,13 +49,13 @@ export function Privacy() {
                   </div>
                   <div>
                     <p className="font-display text-lg font-bold">你的电脑</p>
-                    <p className="text-sm text-paper/60">录音 · 配置 · 词典 · 历史，全部在本地</p>
+                    <p className="text-sm text-paper/60">UnTypo 的一切，全都在本地</p>
                   </div>
                 </div>
 
-                <div className="ml-6 flex flex-col items-center py-2" aria-hidden>
+                <div className="ml-6 flex min-w-0 flex-col items-center py-2" aria-hidden>
                   <span className="h-8 w-px bg-gradient-to-b from-vermilion to-vermilion/30" />
-                  <span className="font-mono text-[11px] text-vermilion">仅发送：录音 + 词典提示</span>
+                  <span className="text-center font-mono text-[11px] text-vermilion">录音&提示词</span>
                   <span className="h-4 w-px bg-vermilion/30" />
                   <svg viewBox="0 0 12 8" className="h-2 w-3 fill-vermilion">
                     <path d="M6 8 0 0h12Z" />
@@ -71,8 +70,8 @@ export function Privacy() {
                     </svg>
                   </div>
                   <div>
-                    <p className="font-display text-lg font-bold">你选择的模型供应商</p>
-                    <p className="text-sm text-paper/60">直连官方接口，账单由你掌控</p>
+                    <p className="font-display text-lg font-bold">模型供应商</p>
+                    <p className="text-sm text-paper/60">直连官方接口，没有任何中间人</p>
                   </div>
                 </div>
 
@@ -90,7 +89,7 @@ export function Privacy() {
                     <p className="font-display text-lg font-bold text-paper/70 line-through decoration-vermilion decoration-2">
                       UnTypo 中转服务器
                     </p>
-                    <p className="text-sm text-paper/50">不存在 —— 我们想收也收不到</p>
+                    <p className="text-sm text-paper/50">404 Not Found</p>
                   </div>
                 </div>
               </div>
@@ -125,9 +124,8 @@ export function Privacy() {
                     <path d="M12 10v4.5M12 17.5v.5" strokeLinecap="round" />
                   </svg>
                   <span>
-                    <strong className="font-semibold text-paper">诚实说明：</strong>
-                    录音、转写文本和词典提示仍会发送到你配置的模型服务提供商——语音识别需要模型来处理。
-                    UnTypo 的意义在于：发给谁、发多少、留多久，都由你决定。
+                    <strong className="font-semibold text-paper">说明：</strong>
+                    录音与提示词仍会发送到你配置的模型服务提供商来处理你的请求。
                   </span>
                 </p>
               </div>

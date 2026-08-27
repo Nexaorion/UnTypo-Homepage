@@ -26,9 +26,9 @@ const FEATURES: Feature[] = [
         <path d="M5 11a7 7 0 0 0 14 0M12 18v3M8.5 21h7" />
       </svg>
     ),
-    title: '按住就说，松开就写',
+    title: '短按开始，再按结束',
     description:
-      '全局快捷键唤起听写，语音活动检测自动断句。松开按键后，结果输入到你刚才正在打字的光标处——思路不断，手不用停。',
+      '全局快捷键唤起听写：短按开始录音，语音活动检测自动断句；再按一次结束，结果输入到你刚才正在打字的光标处。',
     tag: '核心体验',
   },
   {
@@ -40,7 +40,7 @@ const FEATURES: Feature[] = [
     ),
     title: '不止转写，还会办事',
     description:
-      '口述内容会被识别为普通转写、翻译请求或内容指令三种模式：润色措辞、翻译成目标语言，或直接按你的口述生成邮件、回复与清单。',
+      '口述内容会被识别为语音转写、翻译请求或指令请求三种模式：润色措辞、翻译成目标语言，或直接按你的口述生成邮件、回复与清单，TA 都可以做到。',
     tag: '三种模式',
   },
   {
@@ -50,9 +50,9 @@ const FEATURES: Feature[] = [
         <path d="M14 4v5h5M8 13h8M8 16h5" />
       </svg>
     ),
-    title: '专有名词不再听错',
+    title: '不再听错，不再写错',
     description:
-      '把人名、产品名、专业术语加进个人词典，它们会作为转写提示发给模型。还可以配置姓名、称呼和签名，让生成结果更像你写的。',
+      '把人名、产品名、专业术语加进个人词典；或通过自我学习功能，越用越懂你。它们会作为转写提示词发给模型，提高准确率。',
     tag: '个人词典',
   },
   {
@@ -65,7 +65,7 @@ const FEATURES: Feature[] = [
     ),
     title: '模型配置随你组合',
     description:
-      '内置阿里云百炼、OpenAI、OpenAI 兼容接口与 Anthropic 支持，可为不同角色保存多套配置。今天用便宜的，明天换更强的，随时切换。',
+      '内置阿里云百炼、DeepSeek、OpenAI 与 Anthropic 等诸多模型提供商，可为不同角色保存多套配置。今天用便宜的，明天换更强的，随时切换，由你掌控。',
     tag: '多供应商',
   },
   {
@@ -75,9 +75,9 @@ const FEATURES: Feature[] = [
         <path d="m9 12 2 2 4-4.5" />
       </svg>
     ),
-    title: '历史留不留，你说了算',
+    title: '可控的隐私保护围栏',
     description:
-      '历史记录保存在本机 SQLite，可查看、可复制、可一键清空；也能完全关闭记录，或设置自动保留天数。',
+      '历史记录等隐私内容永远且只会保存在本地，所有数据可查看、可复制、可清空；也能完全关闭记录功能，或设置保留的天数，到期自动删除。',
     tag: '记录可控',
   },
   {
@@ -87,9 +87,9 @@ const FEATURES: Feature[] = [
         <path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v2.5" />
       </svg>
     ),
-    title: '密钥加密，只存本地',
+    title: '系统级密钥加密',
     description:
-      'API Key 与个人资料经系统级加密后才落到本地磁盘，没有账号体系，没有云端同步——连开发者自己都读不到你的密钥。',
+      '敏感信息经安全加密后才会保存至本地磁盘中。除了你自己，没人能够读取到你的信息。',
     tag: '本地加密',
   },
 ]
@@ -99,14 +99,14 @@ export function Features() {
     <section id="features" className="relative py-24 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <SectionHeading
-          eyebrow="Features · 特性"
+          eyebrow="Features · 功能"
           title={
             <>
               打字这件事，
               <span className="scribble">交给嘴</span>
             </>
           }
-          description="UnTypo 把「语音 → 文字 → 光标」整条链路做进一个轻量桌面应用里。没有浏览器插件，没有后台服务，打开就用。"
+          description="少做多说，能不用键盘就不用键盘，能不上云就不上云。我们认为，每个人都有权选择自己的供应商、自己的模型、自己的存储方式。"
         />
 
         <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

@@ -39,10 +39,7 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 border-t border-paper/10 pt-6 text-xs text-paper/40 sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            Zero typing, zero typos. · 由社区以开源方式构建，灵感来自 Typeless 一类优秀的听写产品，但控制权属于每一个用户。
-          </p>
+        <div className="mt-10 flex justify-center border-t border-paper/10 pt-6 text-center text-xs text-paper/40">
           <p className="font-mono whitespace-nowrap">© 2026 Nexaorion / UnTypo</p>
         </div>
       </div>

@@ -41,7 +41,7 @@ export function Hero() {
 
             <Reveal delay={180}>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
-                按住快捷键说话，松开后，润色好的文字回到你正在输入的地方。
+                短按快捷键开始说话，再按一次，润色好的文字回到你正在输入的地方。
                 <span className="font-semibold text-ink">模型自己选、费用自己付、数据留在自己的电脑上</span>
                 —— 像 Typeless 一样顺滑，但控制权在你手里。
               </p>
@@ -64,10 +64,12 @@ export function Hero() {
                   href="https://github.com/Nexaorion/UnTypo"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl border-[1.5px] border-ink bg-paper-card px-6 py-3.5 text-base font-bold shadow-key transition-all hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-key-pressed"
+                  className="inline-flex items-center gap-2.5 rounded-xl border-[1.5px] border-ink bg-paper-card px-6 py-3.5 text-base font-bold shadow-key transition-all hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-key-pressed"
                 >
-                  看源代码
-                  <span aria-hidden>→</span>
+                  <svg viewBox="0 0 16 16" className="h-5 w-5 fill-current" aria-hidden>
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+                  </svg>
+                  GitHub
                 </a>
               </div>
             </Reveal>
@@ -79,7 +81,7 @@ export function Hero() {
                   <span aria-hidden>+</span>
                   <Keycap>Alt</Keycap>
                   <span aria-hidden>+</span>
-                  <Keycap tone="vermilion">长按说话</Keycap>
+                  <Keycap tone="vermilion">短按说话</Keycap>
                 </span>
                 <span className="hidden h-4 w-px bg-ink/20 sm:block" aria-hidden />
                 <span>
@@ -89,42 +91,32 @@ export function Hero() {
             </Reveal>
           </div>
 
-          <Reveal delay={200} className="relative">
-            <div
-              aria-hidden
-              className="absolute -top-6 -right-4 z-10 hidden rotate-6 rounded-lg border-[1.5px] border-ink bg-amberish px-3 py-1.5 font-mono text-xs font-semibold text-night shadow-key sm:block"
-              style={{ ['--tilt' as never]: '6deg' }}
-            >
-              <span className="float-slow inline-block">无需账号 ✦ 即下即用</span>
-            </div>
+          <Reveal delay={200} className="relative min-w-0">
             <DictationDemo />
-            <p className="mt-3 text-center font-mono text-xs text-ink-faint">
-              ↑ 真实工作流动画演示 · 转写 / 翻译 / 指令三种模式轮播
-            </p>
           </Reveal>
         </div>
 
-        <Reveal delay={120} className="mt-16">
-          <div className="grid gap-4 rounded-2xl border-[1.5px] border-ink bg-paper-card p-6 shadow-card sm:grid-cols-3 sm:p-7">
-            <div className="flex items-baseline gap-3">
+        <Reveal delay={120} className="mt-16 min-w-0">
+          <div className="grid gap-6 rounded-2xl border-[1.5px] border-ink bg-paper-card p-6 shadow-card sm:grid-cols-3 sm:gap-4 sm:p-7">
+            <div className="flex flex-col items-center text-center">
               <span className="font-display text-4xl font-extrabold tabular sm:text-5xl">~45</span>
-              <span className="text-sm leading-snug text-ink-soft">
+              <span className="mt-1 text-sm leading-snug text-ink-soft">
                 字/分钟
                 <br />
                 <span className="text-ink-faint">键盘打字（平均）</span>
               </span>
             </div>
-            <div className="flex items-baseline gap-3">
+            <div className="flex flex-col items-center text-center">
               <span className="font-display text-4xl font-extrabold text-vermilion tabular sm:text-5xl">200+</span>
-              <span className="text-sm leading-snug text-ink-soft">
+              <span className="mt-1 text-sm leading-snug text-ink-soft">
                 字/分钟
                 <br />
                 <span className="text-ink-faint">自然说话的速度</span>
               </span>
             </div>
-            <div className="flex items-baseline gap-3">
+            <div className="flex flex-col items-center text-center">
               <span className="font-display text-4xl font-extrabold text-moss tabular sm:text-5xl">¥0</span>
-              <span className="text-sm leading-snug text-ink-soft">
+              <span className="mt-1 text-sm leading-snug text-ink-soft">
                 软件费用
                 <br />
                 <span className="text-ink-faint">开源免费，只付你自己的模型账单</span>

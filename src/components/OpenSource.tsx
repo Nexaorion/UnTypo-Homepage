@@ -31,7 +31,7 @@ export function OpenSource() {
   return (
     <section id="open-source" className="relative overflow-hidden border-y-[1.5px] border-ink/12 bg-paper-deep/50 py-24 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.1fr]">
+        <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
           <div>
             <SectionHeading
               eyebrow="Open Source · 开源"
@@ -104,15 +104,33 @@ export function OpenSource() {
                 </a>
               </Reveal>
             ))}
+          </div>
+        </div>
 
-            <Reveal delay={360}>
-              <p className="rounded-xl border border-dashed border-ink/30 p-4 text-sm leading-relaxed text-ink-soft">
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
+          <Reveal delay={120} className="min-w-0">
+            <div className="h-full rounded-2xl border-[1.5px] border-ink bg-paper-card p-6 shadow-card">
+              <span className="inline-block rounded-full border-[1.5px] border-ink bg-amberish/25 px-3 py-1 font-mono text-[11px] font-semibold tracking-wide text-ink">
+                COMING SOON
+              </span>
+              <h3 className="mt-4 font-display text-xl font-bold tracking-tight">UnTypo Cloud</h3>
+              <p className="mt-2.5 text-[15px] leading-relaxed text-ink-soft">
+                我们正在筹划 UnTypo Cloud：一个可选的 All-in-one
+                订阅/计费方案，免去自己配置模型供应商的麻烦。它永远只是
+                <strong className="font-semibold text-ink">可选项</strong>
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={200} className="min-w-0">
+            <div className="flex h-full flex-col justify-between rounded-2xl border-[1.5px] border-dashed border-ink/40 p-6">
+              <p className="text-[15px] leading-relaxed text-ink-soft">
                 <strong className="font-semibold text-ink">早期项目，诚实告知：</strong>
                 UnTypo 目前处于 0.1.x 早期开发阶段，由社区驱动。现在加入，你的每一个 Issue 和 PR
                 都会直接塑造它的样子。
               </p>
-            </Reveal>
-          </div>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

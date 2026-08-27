@@ -34,7 +34,7 @@ export function FinalCta() {
             </Keycap>
             <span aria-hidden>+</span>
             <Keycap className="border-paper/80 bg-paper text-vermilion shadow-[0_3px_0_0_rgba(25,23,19,0.55)]">
-              长按说话
+              短按说话
             </Keycap>
           </div>
         </Reveal>
@@ -58,7 +58,7 @@ export function FinalCta() {
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-xl border-[1.5px] border-paper/80 px-7 py-4 text-base font-bold text-paper transition-all hover:-translate-y-0.5 hover:bg-paper/10"
             >
-              浏览源代码 <span aria-hidden>↗</span>
+              前往 GitHub <span aria-hidden>↗</span>
             </a>
           </div>
           <p className="mt-5 font-mono text-xs text-paper/65">Windows x64 · 免费开源 · 无需账号</p>
