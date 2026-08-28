@@ -50,7 +50,7 @@ export function FinalCta() {
               <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.2">
                 <path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 19h16" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              下载 UnTypo v0.1.3
+              下载
             </a>
             <a
               href="https://github.com/Nexaorion/UnTypo"
