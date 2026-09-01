@@ -1,9 +1,12 @@
+import { Icon } from '@iconify/react'
 import { Reveal } from './Reveal'
 
 interface AppItem {
   name: string
   icon?: string
+  iconify?: string
   glyph?: string
+  color?: string
   generic?: boolean
 }
 
@@ -13,22 +16,48 @@ const APPS_ROW_A: AppItem[] = [
   { name: '飞书', icon: '/app-icons/feishu.png' },
   { name: '企业微信', icon: '/app-icons/wecom.png' },
   { name: 'QQ', icon: '/app-icons/qq.png' },
-  { name: 'Telegram', icon: '/app-icons/telegram.png' },
-  { name: 'Slack', icon: '/app-icons/slack.png' },
-  { name: 'Outlook', icon: '/app-icons/outlook.png' },
+  { name: 'Telegram', iconify: 'logos:telegram' },
+  { name: 'Slack', iconify: 'logos:slack-icon' },
+  { name: 'Outlook', iconify: 'logos:microsoft-outlook' },
   { name: 'Foxmail', icon: '/app-icons/foxmail.png' },
+  { name: 'Gmail', iconify: 'logos:gmail' },
+  { name: 'Discord', iconify: 'logos:discord-icon' },
+  { name: 'WhatsApp', iconify: 'logos:whatsapp-icon' },
+  { name: 'Teams', iconify: 'logos:microsoft-teams' },
+  { name: 'Zoom', iconify: 'logos:zoom-icon' },
+  { name: '腾讯会议', glyph: '会', color: '#006EFF' },
+  { name: 'LINE', iconify: 'logos:line' },
+  { name: 'Messenger', iconify: 'logos:messenger' },
 ]
 const APPS_ROW_B: AppItem[] = [
-  { name: 'Word', glyph: 'W' },
+  { name: 'Word', iconify: 'logos:microsoft-word' },
   { name: 'WPS', icon: '/app-icons/wps.png' },
-  { name: 'Notion', icon: '/app-icons/notion.png' },
-  { name: 'Obsidian', icon: '/app-icons/obsidian.png' },
-  { name: 'VS Code', icon: '/app-icons/vscode.png' },
+  { name: 'Notion', iconify: 'logos:notion-icon' },
+  { name: 'Obsidian', iconify: 'logos:obsidian-icon' },
+  { name: 'VS Code', iconify: 'logos:visual-studio-code' },
   { name: 'Cursor', icon: '/app-icons/cursor.png' },
+  { name: 'Pages', glyph: 'P', color: '#F09C37' },
+  { name: 'Google Docs', iconify: 'logos:google-docs' },
+  { name: 'Typora', glyph: 'T', color: '#2D2D2D' },
+  { name: 'Sublime Text', iconify: 'logos:sublime-text' },
+  { name: 'IntelliJ IDEA', iconify: 'logos:intellij-idea' },
+  { name: 'Xcode', iconify: 'logos:xcode' },
   { name: '浏览器表单', generic: true },
   { name: '记事本', generic: true },
   { name: '任意输入框', generic: true },
+  { name: '备忘录', generic: true },
 ]
+
+function GlyphFallback({ app }: { app: AppItem }) {
+  return (
+    <span
+      className="grid h-5 w-5 place-items-center rounded-[5px] font-display text-[11px] font-extrabold text-white"
+      style={{ backgroundColor: app.color ?? '#2b579a' }}
+    >
+      {app.glyph}
+    </span>
+  )
+}
 
 function AppIcon({ app }: { app: AppItem }) {
   if (app.icon) {
@@ -43,12 +72,19 @@ function AppIcon({ app }: { app: AppItem }) {
       />
     )
   }
-  if (app.glyph) {
+  if (app.iconify) {
     return (
-      <span className="grid h-5 w-5 place-items-center rounded-[5px] bg-[#2b579a] font-display text-[11px] font-extrabold text-white">
-        {app.glyph}
-      </span>
+      <Icon
+        icon={app.iconify}
+        width={20}
+        height={20}
+        className="h-5 w-5"
+        fallback={app.glyph ? <GlyphFallback app={app} /> : undefined}
+      />
     )
+  }
+  if (app.glyph) {
+    return <GlyphFallback app={app} />
   }
   return (
     <span className="grid h-5 w-5 place-items-center rounded-[5px] border-[1.5px] border-dashed border-ink/40 text-ink-faint">
@@ -59,15 +95,28 @@ function AppIcon({ app }: { app: AppItem }) {
   )
 }
 
+function buildTrack(items: AppItem[], minItems = 24) {
+  const copies = Math.max(2, Math.ceil(minItems / items.length))
+  const track: AppItem[] = []
+  for (let i = 0; i < copies; i++) {
+    track.push(...items)
+  }
+  return { track, copies }
+}
+
 function ChipRow({ items, reverse = false, duration }: { items: AppItem[]; reverse?: boolean; duration: string }) {
-  const doubled = [...items, ...items]
+  const { track, copies } = buildTrack(items, 24)
+  const translate = `${-((copies - 1) / copies) * 100}%`
   return (
     <div className="marquee overflow-hidden" aria-hidden={reverse ? true : undefined}>
       <div
         className={`marquee-track gap-3 py-2 ${reverse ? 'reverse' : ''}`}
-        style={{ ['--marquee-duration' as never]: duration }}
+        style={{
+          ['--marquee-duration' as never]: duration,
+          ['--marquee-translate' as never]: translate,
+        }}
       >
-        {doubled.map((app, i) => (
+        {track.map((app, i) => (
           <span
             key={`${app.name}-${i}`}
             className="inline-flex items-center gap-2.5 rounded-lg border-[1.5px] border-ink/70 bg-paper-card px-4 py-2 font-mono text-sm font-semibold whitespace-nowrap text-ink shadow-key"
